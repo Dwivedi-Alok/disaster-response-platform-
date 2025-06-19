@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disaster Response Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Disaster Response Platform</h1>
+            <div class="user-info">
+                <select id="userSelect">
+                    <option value="netrunnerX">NetRunner X (Admin)</option>
+                    <option value="reliefAdmin">Relief Admin</option>
+                    <option value="citizen1">Citizen One</option>
+                </select>
+            </div>
+        </header>
+
+        <main>
+            <!-- Create Disaster Form -->
+            <section class="form-section">
+                <h2>Report Disaster</h2>
+                <form id="disasterForm">
+                    <input type="text" id="title" placeholder="Disaster Title" required>
+                    <input type="text" id="locationName" placeholder="Location Name">
+                    <textarea id="description" placeholder="Description" rows="3"></textarea>
+                    <input type="text" id="tags" placeholder="Tags (comma-separated)">
+                    <button type="submit">Create Disaster</button>
+                </form>
+            </section>
+
+            <!-- Disasters List -->
+            <section class="disasters-section">
+                <h2>Active Disasters</h2>
+                <div class="filters">
+                    <input type="text" id="filterTag" placeholder="Filter by tag">
+                    <button onclick="loadDisasters()">Filter</button>
+                </div>
+                <div id="disastersList" class="disasters-list"></div>
+            </section>
+
+            <!-- Selected Disaster Details -->
+            <section id="disasterDetails" class="disaster-details" style="display: none;">
+                <h2>Disaster Details</h2>
+                <div id="detailsContent"></div>
+                
+                <!-- Submit Report -->
+                <div class="report-form">
+                    <h3>Submit Report</h3>
+                    <textarea id="reportContent" placeholder="Report content"></textarea>
+                    <input type="text" id="reportImage" placeholder="Image URL">
+                    <button onclick="submitReport()">Submit Report</button>
+                </div>
+                
+                <!-- Social Media Reports -->
+                <div class="social-media">
+                    <h3>Social Media Reports</h3>
+                    <div id="socialMediaReports"></div>
+                </div>
+                
+                <!-- Resources -->
+                <div class="resources">
+                    <h3>Nearby Resources</h3>
+                    <button onclick="loadResources()">Find Resources</button>
+                    <div id="resourcesList"></div>
+                </div>
+                
+                <!-- Official Updates -->
+                <div class="official-updates">
+                    <h3>Official Updates</h3>
+                    <button onclick="loadOfficialUpdates()">Load Updates</button>
+                    <div id="officialUpdatesList"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
